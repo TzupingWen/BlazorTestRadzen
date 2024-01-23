@@ -1,0 +1,20 @@
+﻿@page "/example"
+@inject DialogService DialogService
+
+<div class="rz-p-12 rz-text-align-center">
+    <RadzenButton Text="@($"Id? {exId}")" ButtonStyle="ButtonStyle.Secondary" Click="ShowCounterOnDialog"></RadzenButton>
+</div>
+
+<RadzenHtmlEditor Style="height:600px" />
+
+
+@code {
+    private int exId = 123;
+
+    private async Task ShowCounterOnDialog()
+    {
+        await DialogService.OpenAsync<Counter>("Show Counter Page",
+        new Dictionary<string, object>() { { "ExID", exId } },
+        new DialogOptions() { Width = "700px", Height = "512px", Resizable = true, Draggable = true });
+    }
+}
